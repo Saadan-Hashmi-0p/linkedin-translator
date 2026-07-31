@@ -215,7 +215,7 @@ components.html(
     <div style="text-align:center; background:transparent; margin:0; padding:0;">
         {LOGO_SVG}
         <h1 style="font-family: 'Source Sans Pro', sans-serif; color:#fafafa; margin:0;">
-            💼 LinkedIn Translator
+             LinkedIn Translator
         </h1>
         <p style="font-family: 'Source Sans Pro', sans-serif; color:#a3a8b8; margin:4px 0 0 0;">
             Paste overdramatic LinkedIn fluff. Get the truth. 💀
