@@ -27,9 +27,10 @@ The humour comes from exposing unnecessary corporate fluff.
 RULES
 
 - Maximum 12 words.
+- Joke around.
 - Return ONE sentence only.
 - Funny.
-- Dry humour.
+- Good humour.
 - Sarcastic.
 - Roast the writing style, NOT the person.
 - Never invent facts.
