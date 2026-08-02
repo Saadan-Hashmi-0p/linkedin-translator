@@ -318,21 +318,16 @@ if st.session_state.page == "History":
 main_col, stats_col = st.columns([2.6, 1], gap="large")
 
 with main_col:
-    top_l, top_r = st.columns([4, 1])
-    with top_l:
-        st.markdown(
-            '<div class="app-title-row"><span class="app-title">LinkedIn Post Translator</span>'
-            '<span class="version-badge">v1.0</span></div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            '<p class="app-subtitle">Translate corporate LinkedIn fluff into plain, honest English. '
-            "Paste a post and see what actually happened.</p>",
-            unsafe_allow_html=True,
-        )
-    with top_r:
-        st.write("")
-        st.link_button("Deploy ↗", "https://streamlit.io/cloud", use_container_width=True)
+    st.markdown(
+        '<div class="app-title-row"><span class="app-title">LinkedIn Post Translator</span>'
+        '<span class="version-badge">v1.0</span></div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<p class="app-subtitle">Translate corporate LinkedIn fluff into plain, honest English. '
+        "Paste a post and see what actually happened.</p>",
+        unsafe_allow_html=True,
+    )
 
     fun_facts = [
         ('The average LinkedIn post contains <span class="fun-fact-highlight">47% more fluff</span> than necessary'),
