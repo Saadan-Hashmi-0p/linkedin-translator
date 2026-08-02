@@ -1,0 +1,102 @@
+#MainMenu, footer {visibility: hidden;}
+header[data-testid="stHeader"] { background: transparent; }
+.block-container {padding-top: 2rem; padding-bottom: 3rem; max-width: 1250px;}
+
+html, body, [class*="css"] { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+
+.stApp { background-color: #eef1f7; }
+section[data-testid="stSidebar"] > div { background-color: #f7f8fb; }
+
+div[data-testid="stVerticalBlockBorderWrapper"] { background-color: #ffffff; }
+.fun-fact-box { background: #ffffff; }
+
+section[data-testid="stSidebar"] {
+    background-color: #f7f8fb;
+    border-right: 1px solid #e5e7eb;
+}
+section[data-testid="stSidebar"] .block-container { padding-top: 1.5rem; }
+
+.sidebar-logo {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700; font-size: 1.15rem; color: #111827;
+    margin-bottom: 1.5rem; padding: 0 0.25rem;
+}
+.sidebar-section-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+    color: #9ca3af; margin: 1.1rem 0 0.4rem 0.25rem; text-transform: uppercase;
+}
+
+section[data-testid="stSidebar"] .stButton > button {
+    background-color: transparent; border: none; box-shadow: none;
+    text-align: left; justify-content: flex-start; width: 100%;
+    color: #374151; font-weight: 500; padding: 0.5rem 0.6rem;
+    border-radius: 8px; font-size: 0.92rem;
+}
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background-color: #f3f4f6; color: #111827;
+}
+section[data-testid="stSidebar"] .stButton > button:focus:not(:active) { box-shadow: none; }
+
+.nav-active > div > button {
+    background-color: #eef2ff !important; color: #4f46e5 !important; font-weight: 600 !important;
+}
+
+.pro-tip-box {
+    background: #f5f3ff; border: 1px solid #ede9fe; border-radius: 12px;
+    padding: 14px 16px; margin-top: 1.5rem;
+}
+.pro-tip-title { color: #7c3aed; font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
+.pro-tip-text { color: #6b21a8; font-size: 0.82rem; line-height: 1.4; }
+
+.app-title-row { display: flex; align-items: center; gap: 10px; }
+.app-title { font-size: 2rem; font-weight: 800; color: #111827; margin: 0; }
+.version-badge {
+    background: #f3f4f6; color: #6b7280; font-size: 0.72rem; font-weight: 600;
+    padding: 3px 9px; border-radius: 999px; border: 1px solid #e5e7eb;
+}
+.app-subtitle { color: #6b7280; font-size: 0.95rem; margin-top: 4px; }
+
+.fun-fact-box {
+    background: #f8fafc; border: 1px solid #eef0f3; border-radius: 12px;
+    padding: 14px 18px; display: flex; align-items: center; gap: 12px; margin: 1.2rem 0;
+}
+.fun-fact-icon {
+    background: #e0e7ff; color: #4f46e5; border-radius: 8px; width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+}
+.fun-fact-text { color: #374151; font-size: 0.9rem; }
+.fun-fact-highlight { color: #4f46e5; font-weight: 700; }
+
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    border-radius: 14px !important; border: 1px solid #e5e7eb !important;
+}
+.card-title { font-weight: 700; font-size: 1.02rem; color: #111827; margin-bottom: 0.9rem; }
+
+.example-grid .stButton > button {
+    width: 100%; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
+    color: #374151; font-weight: 500; padding: 0.65rem 0.75rem; font-size: 0.9rem;
+}
+.example-grid .stButton > button:hover { border-color: #c7d2fe; background: #f5f7ff; color: #4f46e5; }
+
+.stButton > button[kind="primary"] {
+    background: #4f46e5; border: none; border-radius: 10px; font-weight: 600;
+}
+.stButton > button[kind="primary"]:hover { background: #4338ca; }
+
+.stTextArea textarea { border-radius: 10px; border: 1px solid #e5e7eb; }
+
+.stats-title { font-weight: 700; font-size: 1.02rem; color: #111827; margin-bottom: 0.9rem;
+    display: flex; align-items: center; gap: 8px; }
+.stat-card { border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+.stat-value { font-size: 1.6rem; font-weight: 800; line-height: 1.1; }
+.stat-label { font-size: 0.8rem; color: #6b7280; margin-top: 2px; }
+.stat-purple { background: #eef2ff; } .stat-purple .stat-value { color: #4f46e5; }
+.stat-green  { background: #ecfdf5; } .stat-green  .stat-value { color: #059669; }
+.stat-amber  { background: #fffbeb; } .stat-amber  .stat-value { color: #d97706; }
+
+.result-card {
+    border-radius: 12px; border: 1px solid #e5e7eb; padding: 14px 16px; margin-bottom: 10px;
+}
+.tag-roast  { color: #dc2626; font-weight: 700; font-size: 0.72rem; letter-spacing: .04em; }
+.tag-praise { color: #059669; font-weight: 700; font-size: 0.72rem; letter-spacing: .04em; }
+.tag-plain  { color: #6b7280; font-weight: 700; font-size: 0.72rem; letter-spacing: .04em; }
