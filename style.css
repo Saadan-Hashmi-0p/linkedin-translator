@@ -27,13 +27,13 @@ section[data-testid="stSidebar"] .block-container { padding-top: 1.5rem; }
 }
 
 section[data-testid="stSidebar"] .stButton > button {
-    background-color: transparent; border: none; box-shadow: none;
+    background-color: transparent !important; border: none !important; box-shadow: none;
     text-align: left; justify-content: flex-start; width: 100%;
-    color: #374151; font-weight: 500; padding: 0.5rem 0.6rem;
+    color: #374151 !important; font-weight: 500; padding: 0.5rem 0.6rem;
     border-radius: 8px; font-size: 0.92rem;
 }
 section[data-testid="stSidebar"] .stButton > button:hover {
-    background-color: #f3f4f6; color: #111827;
+    background-color: #f3f4f6 !important; color: #111827 !important;
 }
 section[data-testid="stSidebar"] .stButton > button:focus:not(:active) { box-shadow: none; }
 
@@ -73,17 +73,24 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 .card-title { font-weight: 700; font-size: 1.02rem; color: #111827; margin-bottom: 0.9rem; }
 
 .example-grid .stButton > button {
-    width: 100%; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
-    color: #374151; font-weight: 500; padding: 0.65rem 0.75rem; font-size: 0.9rem;
+    width: 100%; background: #ffffff !important; border: 1px solid #e5e7eb !important; border-radius: 10px;
+    color: #374151 !important; font-weight: 500; padding: 0.65rem 0.75rem; font-size: 0.9rem;
 }
-.example-grid .stButton > button:hover { border-color: #c7d2fe; background: #f5f7ff; color: #4f46e5; }
+.example-grid .stButton > button:hover { border-color: #c7d2fe !important; background: #f5f7ff !important; color: #4f46e5 !important; }
 
+.stButton > button {
+    background: #ffffff !important; border: 1px solid #e5e7eb !important; color: #374151 !important;
+}
 .stButton > button[kind="primary"] {
-    background: #4f46e5; border: none; border-radius: 10px; font-weight: 600;
+    background: #4f46e5 !important; border: none !important; border-radius: 10px; font-weight: 600;
+    color: #ffffff !important;
 }
-.stButton > button[kind="primary"]:hover { background: #4338ca; }
+.stButton > button[kind="primary"]:hover { background: #4338ca !important; }
 
-.stTextArea textarea { border-radius: 10px; border: 1px solid #e5e7eb; }
+.stTextArea textarea {
+    border-radius: 10px; border: 1px solid #e5e7eb !important;
+    background: #ffffff !important; color: #111827 !important;
+}
 
 .stats-title { font-weight: 700; font-size: 1.02rem; color: #111827; margin-bottom: 0.9rem;
     display: flex; align-items: center; gap: 8px; }
