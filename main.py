@@ -403,7 +403,7 @@ with main_col:
         btn_l, btn_r = st.columns([1, 3])
         with btn_l:
             if st.button("🗑️ Clear", key="clear_main", use_container_width=True):
-                st.session_state.post_input = ""
+                st.session_state.post_text = ""
                 st.rerun()
         with btn_r:
             translate_clicked = st.button("Translate Post →", type="primary", use_container_width=True)
