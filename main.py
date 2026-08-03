@@ -344,40 +344,6 @@ with main_col:
     </div>
     """, unsafe_allow_html=True)
 
-    # ---- Try an example ----
-    # with st.container(border=True):
-    #     st.markdown('<div class="card-title">🔧 Try an example</div>', unsafe_allow_html=True)
-
-    #     example_posts = [
-    #         "I'm thrilled to announce that I've accepted a new opportunity at a transformative company.",
-    #         "After months of deep reflection, I've decided to pursue a new chapter in my professional journey.",
-    #         "Today I had the opportunity to troubleshoot a complex network outage and demonstrate my leadership skills.",
-    #         "I'm humbled and grateful to receive this prestigious industry recognition award.",
-    #         "Excited to share that I've completed another advanced certification to upskill myself.",
-    #     ]
-    #     example_labels = ["💼 Job Change", "🤔 Reflection", "🔧 Problem Solver", "🏆 Award Winner", "📚 Certified"]
-
-    #     st.markdown('<div class="example-grid">', unsafe_allow_html=True)
-    #     r1 = st.columns(3)
-    #     r2 = st.columns(3)
-    #     for col, label, txt in zip(r1, example_labels[:3], example_posts[:3]):
-    #         with col:
-    #             if st.button(label, key=f"ex_{label}", use_container_width=True):
-    #                 st.session_state.post_text = txt
-    #                 st.rerun()
-    #     for col, label, txt in zip(r2, example_labels[3:], example_posts[3:]):
-    #         with col:
-    #             if st.button(label, key=f"ex_{label}", use_container_width=True):
-    #                 st.session_state.post_text = txt
-    #                 st.rerun()
-    #     with r2[2]:
-    #         if st.button("🗑️ Clear", key="ex_clear", use_container_width=True):
-    #             st.session_state.post_text = ""
-    #             st.rerun()
-    #     st.markdown('</div>', unsafe_allow_html=True)
-
-    # st.write("")
-
     # ---- Enter post ----
     with st.container(border=True):
         head_l, head_r = st.columns([4, 1])
@@ -400,86 +366,71 @@ with main_col:
         )
         st.session_state.post_text = post
 
-        def clear_text():
-            st.session_state.post_input = ""
-            st.session_state.post_text = ""
+translate_clicked = st.button(
+    "Translate Post →",
+    type="primary",
+    use_container_width=True,
+)
 
-btn_l, btn_r = st.columns([1, 3])
+if translate_clicked:
+    cleaned_post = " ".join(post.split())[:3000]
+    api_key = st.session_state.get("api_key") or os.environ.get("HF_TOKEN", "")
 
-with btn_l:
-    st.button(
-        "🗑️ Clear",
-        key="clear_main",
-        use_container_width=True,
-        on_click=clear_text,
-    )
+    if not cleaned_post:
+        st.warning("Paste something first.")
+    elif not api_key:
+        st.error("Add your Hugging Face API token in API Settings first.")
+    else:
+        loading_messages = [
+            "Analyzing corporate fluff...",
+            "Evaluating substance vs. hype...",
+            "Detecting humble brags...",
+            "Calculating truth level...",
+            "Translating...",
+        ]
+        with st.spinner(loading_messages[st.session_state.total_translations % len(loading_messages)]):
+            try:
+                client = get_client(api_key)
+                category, translation = translate(client, cleaned_post)
 
-with btn_r:
-    translate_clicked = st.button(
-        "Translate Post →",
-        type="primary",
-        use_container_width=True,
-    )
+                if not translation:
+                    st.error("Model returned an empty response. Try again, or check the API token/model availability.")
+                    st.stop()
 
-    if translate_clicked:
-        cleaned_post = " ".join(post.split())[:3000]
-        api_key = st.session_state.get("api_key") or os.environ.get("HF_TOKEN", "")
+                st.session_state.total_translations += 1
 
-        if not cleaned_post:
-            st.warning("Paste something first.")
-        elif not api_key:
-            st.error("Add your Hugging Face API token in API Settings first.")
-        else:
-            loading_messages = [
-                "Analyzing corporate fluff...",
-                "Evaluating substance vs. hype...",
-                "Detecting humble brags...",
-                "Calculating truth level...",
-                "Translating...",
-            ]
-            with st.spinner(loading_messages[st.session_state.total_translations % len(loading_messages)]):
-                try:
-                    client = get_client(api_key)
-                    category, translation = translate(client, cleaned_post)
+                chars_saved = 0
+                if category == "ROAST":
+                    chars_saved = max(0, len(cleaned_post) - len(translation))
+                    st.session_state.fluff_removed += chars_saved
 
-                    if not translation:
-                        st.error("Model returned an empty response. Try again, or check the API token/model availability.")
-                        st.stop()
+                st.session_state.score_total += CATEGORY_SCORE.get(category, 60)
+                st.session_state.history.insert(0, (cleaned_post, translation, category, chars_saved))
 
-                    st.session_state.total_translations += 1
+                tag_class = {"ROAST": "tag-roast", "PRAISE": "tag-praise", "PLAIN": "tag-plain"}[category]
+                st.markdown(f"""
+                <div class="result-card">
+                    <span class="{tag_class}">{category}</span>
+                    <p style="margin-top:6px; font-weight:600; font-size:1rem;">{translation}</p>
+                </div>
+                """, unsafe_allow_html=True)
 
-                    chars_saved = 0
-                    if category == "ROAST":
-                        chars_saved = max(0, len(cleaned_post) - len(translation))
-                        st.session_state.fluff_removed += chars_saved
+            except Exception as e:
+                st.error(f"Something went wrong: {e}")
 
-                    st.session_state.score_total += CATEGORY_SCORE.get(category, 60)
-                    st.session_state.history.insert(0, (cleaned_post, translation, category, chars_saved))
-
-                    tag_class = {"ROAST": "tag-roast", "PRAISE": "tag-praise", "PLAIN": "tag-plain"}[category]
-                    st.markdown(f"""
-                    <div class="result-card">
-                        <span class="{tag_class}">{category}</span>
-                        <p style="margin-top:6px; font-weight:600; font-size:1rem;">{translation}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-                except Exception as e:
-                    st.error(f"Something went wrong: {e}")
-
-    # ---- Recent results ----
-    if st.session_state.history:
-        st.write("")
-        st.markdown('<div class="card-title">Recent translations</div>', unsafe_allow_html=True)
-        for idx, entry in enumerate(st.session_state.history[:5]):
-            original, translation, category, chars_saved = entry
-            tag_class = {"ROAST": "tag-roast", "PRAISE": "tag-praise", "PLAIN": "tag-plain"}[category]
-            st.markdown(f"""
-            <div class="result-card">
-                <span class="{tag_class}">{category}</span>
-                <p style="margin-top:6px; font-weight:600; font-size:0.95rem;">{translation}</p>
-            </div>
-            """, unsafe_allow_html=True)
+# ---- Recent results ----
+if st.session_state.history:
+    st.write("")
+    st.markdown('<div class="card-title">Recent translations</div>', unsafe_allow_html=True)
+    for idx, entry in enumerate(st.session_state.history[:5]):
+        original, translation, category, chars_saved = entry
+        tag_class = {"ROAST": "tag-roast", "PRAISE": "tag-praise", "PLAIN": "tag-plain"}[category]
+        st.markdown(f"""
+        <div class="result-card">
+            <span class="{tag_class}">{category}</span>
+            <p style="margin-top:6px; font-weight:600; font-size:0.95rem;">{translation}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 
 # Right column: Your Stats
