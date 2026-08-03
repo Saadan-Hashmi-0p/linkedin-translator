@@ -107,3 +107,8 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 .tag-roast  { color: #dc2626; font-weight: 700; font-size: 0.72rem; letter-spacing: .04em; }
 .tag-praise { color: #059669; font-weight: 700; font-size: 0.72rem; letter-spacing: .04em; }
 .tag-plain  { color: #6b7280; font-weight: 700; font-size: 0.72rem; letter-spacing: .04em; }
+
+.recent-translations {
+    margin-top: -20px;
+    margin-left: -10px;
+}
