@@ -400,13 +400,26 @@ with main_col:
         )
         st.session_state.post_text = post
 
-        btn_l, btn_r = st.columns([1, 3])
-        with btn_l:
-            if st.button("🗑️ Clear", key="clear_main", use_container_width=True):
-                st.session_state.post_text = ""
-                st.rerun()
-        with btn_r:
-            translate_clicked = st.button("Translate Post →", type="primary", use_container_width=True)
+        def clear_text():
+            st.session_state.post_input = ""
+            st.session_state.post_text = ""
+
+btn_l, btn_r = st.columns([1, 3])
+
+with btn_l:
+    st.button(
+        "🗑️ Clear",
+        key="clear_main",
+        use_container_width=True,
+        on_click=clear_text,
+    )
+
+with btn_r:
+    translate_clicked = st.button(
+        "Translate Post →",
+        type="primary",
+        use_container_width=True,
+    )
 
     if translate_clicked:
         cleaned_post = " ".join(post.split())[:3000]
