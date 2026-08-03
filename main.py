@@ -180,8 +180,8 @@ def translate(client: OpenAI, post: str):
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": post},
         ],
-        temperature=0.5,
-        max_tokens=800,
+        temperature=0.8,
+        max_tokens=650,
         extra_body={"reasoning_effort": "medium"},
     )
     raw = response.choices[0].message.content or ""
