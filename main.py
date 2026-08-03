@@ -345,38 +345,38 @@ with main_col:
     """, unsafe_allow_html=True)
 
     # ---- Try an example ----
-    with st.container(border=True):
-        st.markdown('<div class="card-title">🔧 Try an example</div>', unsafe_allow_html=True)
+    # with st.container(border=True):
+    #     st.markdown('<div class="card-title">🔧 Try an example</div>', unsafe_allow_html=True)
 
-        example_posts = [
-            "I'm thrilled to announce that I've accepted a new opportunity at a transformative company.",
-            "After months of deep reflection, I've decided to pursue a new chapter in my professional journey.",
-            "Today I had the opportunity to troubleshoot a complex network outage and demonstrate my leadership skills.",
-            "I'm humbled and grateful to receive this prestigious industry recognition award.",
-            "Excited to share that I've completed another advanced certification to upskill myself.",
-        ]
-        example_labels = ["💼 Job Change", "🤔 Reflection", "🔧 Problem Solver", "🏆 Award Winner", "📚 Certified"]
+    #     example_posts = [
+    #         "I'm thrilled to announce that I've accepted a new opportunity at a transformative company.",
+    #         "After months of deep reflection, I've decided to pursue a new chapter in my professional journey.",
+    #         "Today I had the opportunity to troubleshoot a complex network outage and demonstrate my leadership skills.",
+    #         "I'm humbled and grateful to receive this prestigious industry recognition award.",
+    #         "Excited to share that I've completed another advanced certification to upskill myself.",
+    #     ]
+    #     example_labels = ["💼 Job Change", "🤔 Reflection", "🔧 Problem Solver", "🏆 Award Winner", "📚 Certified"]
 
-        st.markdown('<div class="example-grid">', unsafe_allow_html=True)
-        r1 = st.columns(3)
-        r2 = st.columns(3)
-        for col, label, txt in zip(r1, example_labels[:3], example_posts[:3]):
-            with col:
-                if st.button(label, key=f"ex_{label}", use_container_width=True):
-                    st.session_state.post_text = txt
-                    st.rerun()
-        for col, label, txt in zip(r2, example_labels[3:], example_posts[3:]):
-            with col:
-                if st.button(label, key=f"ex_{label}", use_container_width=True):
-                    st.session_state.post_text = txt
-                    st.rerun()
-        with r2[2]:
-            if st.button("🗑️ Clear", key="ex_clear", use_container_width=True):
-                st.session_state.post_text = ""
-                st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
+    #     st.markdown('<div class="example-grid">', unsafe_allow_html=True)
+    #     r1 = st.columns(3)
+    #     r2 = st.columns(3)
+    #     for col, label, txt in zip(r1, example_labels[:3], example_posts[:3]):
+    #         with col:
+    #             if st.button(label, key=f"ex_{label}", use_container_width=True):
+    #                 st.session_state.post_text = txt
+    #                 st.rerun()
+    #     for col, label, txt in zip(r2, example_labels[3:], example_posts[3:]):
+    #         with col:
+    #             if st.button(label, key=f"ex_{label}", use_container_width=True):
+    #                 st.session_state.post_text = txt
+    #                 st.rerun()
+    #     with r2[2]:
+    #         if st.button("🗑️ Clear", key="ex_clear", use_container_width=True):
+    #             st.session_state.post_text = ""
+    #             st.rerun()
+    #     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.write("")
+    # st.write("")
 
     # ---- Enter post ----
     with st.container(border=True):
@@ -481,7 +481,7 @@ with stats_col:
     st.markdown(f"""
     <div class="stat-card stat-purple">
         <div class="stat-value">{st.session_state.total_translations}</div>
-        <div class="stat-label">Total Translations</div>
+        <div class"stat-label">Total Translations</div>
     </div>
     <div class="stat-card stat-green">
         <div class="stat-value">{st.session_state.fluff_removed}</div>
