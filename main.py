@@ -180,7 +180,7 @@ def translate(client: OpenAI, post: str):
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": post},
         ],
-        temperature=0.85,
+        temperature=0.5,
         max_tokens=300,
         extra_body={"reasoning_effort": "medium"},
     )
